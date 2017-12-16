@@ -8,28 +8,55 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+
+    // MARK: -  Constants
+
+    private struct Constants {
+        static let cityCellIdentifier = "cityCell"
+        static let test = "test"
+    }
+
+
+
+    // MARK: -  stored properties
+
+    let cities = Cities()
+
+
+    // MARK: -  outlets
+    @IBOutlet weak var citiesTableView: UITableView!
+
+    // MARK: -  Main method
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        citiesTableView.delegate = self
+        citiesTableView.dataSource = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: -  delegate and datasource methods
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cities.citiesArray.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = citiesTableView.dequeueReusableCell(withIdentifier: Constants.cityCellIdentifier, for: indexPath)
+        let sortedCities = cities.citiesArray.sorted()
+        cell.textLabel?.text = sortedCities[indexPath.row]
+
+        return cell
+    }
+
+    // MARK: -  custom methods
+
+    func setUpUI() {
+        
     }
     
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

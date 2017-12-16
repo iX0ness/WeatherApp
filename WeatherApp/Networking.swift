@@ -7,3 +7,17 @@
 //
 
 import Foundation
+
+class Networking {
+
+    var jsonURLString: String
+    var url: URL
+
+    init(jsonURLString: String) {
+        self.jsonURLString = jsonURLString
+        self.url = URL(string: jsonURLString)!
+    }
+
+    
+
+}
