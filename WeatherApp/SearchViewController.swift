@@ -8,25 +8,29 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
 
     // MARK: -  Constants
 
     private struct Constants {
         static let cityCellIdentifier = "cityCell"
-        static let test = "test"
+        
     }
-
-
 
     // MARK: -  stored properties
 
     let cities = Cities()
+    var searchController: UISearchController!
+    var isSearching = false
+    var filteredCities = [String]()
+
 
 
     // MARK: -  outlets
     @IBOutlet weak var citiesTableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
 
     // MARK: -  Main method
 
@@ -34,27 +38,46 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         citiesTableView.delegate = self
         citiesTableView.dataSource = self
+        searchBar.delegate = self
+
+        filteredCities = cities.citiesArray
     }
 
     // MARK: -  delegate and datasource methods
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cities.citiesArray.count
+        return filteredCities.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = citiesTableView.dequeueReusableCell(withIdentifier: Constants.cityCellIdentifier, for: indexPath)
-        let sortedCities = cities.citiesArray.sorted()
+        let sortedCities = filteredCities.sorted()
         cell.textLabel?.text = sortedCities[indexPath.row]
-
         return cell
     }
 
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText .isEmpty else {
+            filteredCities = cities.citiesArray
+            citiesTableView.reloadData()
+            return
+        }
+
+        filteredCities = cities.citiesArray.filter({ (word) -> Bool in
+            guard searchBar.text != nil else {return false}
+            return word.lowercased().contains(searchText.lowercased())
+        })
+        citiesTableView.reloadData()
+    }
+
+
     // MARK: -  custom methods
 
-    func setUpUI() {
+    private func setUpUI() {
         
     }
+
+
     
 
 
