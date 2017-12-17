@@ -15,14 +15,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     private struct Constants {
         static let cityCellIdentifier = "cityCell"
+        static let citySegueIdentifier = "citySegue"
         
     }
 
     // MARK: -  stored properties
 
     let cities = Cities()
-    var searchController: UISearchController!
-    var isSearching = false
     var filteredCities = [String]()
 
 
@@ -53,7 +52,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = citiesTableView.dequeueReusableCell(withIdentifier: Constants.cityCellIdentifier, for: indexPath)
         let sortedCities = filteredCities.sorted()
         cell.textLabel?.text = sortedCities[indexPath.row]
+        
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = citiesTableView.cellForRow(at: indexPath)
+        performSegue(withIdentifier: Constants.citySegueIdentifier, sender: cell)
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -68,6 +73,15 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return word.lowercased().contains(searchText.lowercased())
         })
         citiesTableView.reloadData()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is WeatherViewController {
+            let cell = sender as! UITableViewCell
+            let destinationController = segue.destination as! WeatherViewController
+            destinationController.navigationItem.title = cell.textLabel?.text
+            destinationController.cityName = (cell.textLabel?.text)!
+        }
     }
 
 

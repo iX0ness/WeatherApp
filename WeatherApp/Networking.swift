@@ -8,6 +8,9 @@
 
 import Foundation
 
+
+
+
 class Networking {
 
     var jsonURLString: String
@@ -16,6 +19,13 @@ class Networking {
     init(jsonURLString: String) {
         self.jsonURLString = jsonURLString
         self.url = URL(string: jsonURLString)!
+    }
+
+    func getWeatherInfo() {
+        URLSession.shared.dataTask(with: self.url) { (data, response, error) in
+            guard let data = data else { return }
+            guard error == nil else { return }
+        }
     }
 
     
