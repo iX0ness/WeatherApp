@@ -9,12 +9,11 @@
 import Foundation
 
 
-
-
 class Networking {
 
     var jsonURLString: String
     var url: URL
+    var weather = [Weather]()
 
     init(jsonURLString: String) {
         self.jsonURLString = jsonURLString
@@ -22,9 +21,18 @@ class Networking {
     }
 
     func getWeatherInfo() {
-        URLSession.shared.dataTask(with: self.url) { (data, response, error) in
-            guard let data = data else { return }
-            guard error == nil else { return }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            do {
+                self.weather = try JSONDecoder().decode([Weather].self, from: data!)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+
+    func description() {
+        for w in weather {
+            print("\(w.current.condition) \(w.location.name)")
         }
     }
 

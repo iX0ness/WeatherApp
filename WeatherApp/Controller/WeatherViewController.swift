@@ -10,8 +10,9 @@ import UIKit
 
 class WeatherViewController: UIViewController {
 
-
-
+    // MARK: -  outlets
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    
 
     // MARK: -  stored properties
     var cityName = String()
