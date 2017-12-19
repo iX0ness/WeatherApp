@@ -19,7 +19,7 @@ class WeatherViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("City name:\(cityName)")
+        
 
         
     }

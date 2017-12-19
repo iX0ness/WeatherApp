@@ -31,7 +31,7 @@ class CurrentCityWeatherViewController: UIViewController, UISearchBarDelegate {
         
     }
 
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let urlRequest = URLRequest(url: URL(string: "http://api.apixu.com/v1/current.json?key=f65419cbcdee49de8c7223718171712&q=\(searchBar.text!.replacingOccurrences(of: " ", with: "%20"))")!)
 
         let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
@@ -45,7 +45,8 @@ class CurrentCityWeatherViewController: UIViewController, UISearchBarDelegate {
 
                         if let condition = current["condition"] as? [String: AnyObject] {
                             self.condition = condition["text"] as! String
-                            self.imageURL = condition["icon"] as! String
+                            let icon = condition["icon"] as! String
+                            self.imageURL = "http:\(icon)"
 
                         }
                     }
@@ -60,12 +61,17 @@ class CurrentCityWeatherViewController: UIViewController, UISearchBarDelegate {
 
                     DispatchQueue.main.async {
                         if self.exists {
-                            self.temperatureLabel.text = self.celsiusDegree.description
+                            self.temperatureLabel.isHidden = false
+                            self.conditionLabel.isHidden = false
+                            self.weatherImageView.isHidden = false
+                            self.temperatureLabel.text = "\(self.celsiusDegree.description)°"
                             self.conditionLabel.text = self.condition
                             self.cityNameLabel.text = self.cityName
+                            self.weatherImageView.dowloadImage(from: self.imageURL!)
                         } else {
                             self.temperatureLabel.isHidden = true
                             self.conditionLabel.isHidden = true
+                            self.weatherImageView.isHidden = true
                             self.cityNameLabel.text = "No matching city found"
                             self.exists = true
                         }
@@ -77,7 +83,39 @@ class CurrentCityWeatherViewController: UIViewController, UISearchBarDelegate {
         }
         task.resume()
     }
-
-
-
 }
+
+extension UIImageView {
+    func dowloadImage(from url: String) {
+        let urlRequest = URLRequest(url: URL(string: url)!)
+        let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            if error == nil {
+                DispatchQueue.main.async {
+                    self.image = UIImage(data: data!)
+                }
+            }
+        }
+        task.resume()
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
