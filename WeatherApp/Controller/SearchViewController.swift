@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
 
     // MARK: -  Constants
@@ -21,14 +21,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     // MARK: -  stored properties
 
-    let cities = Cities()
-    var filteredCities = [String]()
+    var cities = [String]()
+
 
 
 
     // MARK: -  outlets
     @IBOutlet weak var citiesTableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+
     
 
     // MARK: -  Main method
@@ -37,21 +37,19 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         citiesTableView.delegate = self
         citiesTableView.dataSource = self
-        searchBar.delegate = self
 
-        filteredCities = cities.citiesArray
     }
 
     // MARK: -  delegate and datasource methods
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredCities.count
+        return cities.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = citiesTableView.dequeueReusableCell(withIdentifier: Constants.cityCellIdentifier, for: indexPath)
-        let sortedCities = filteredCities.sorted()
-        cell.textLabel?.text = sortedCities[indexPath.row]
+
+        cell.textLabel?.text = cities[indexPath.row]
         
         return cell
     }
@@ -61,19 +59,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         performSegue(withIdentifier: Constants.citySegueIdentifier, sender: cell)
     }
 
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard !searchText .isEmpty else {
-            filteredCities = cities.citiesArray
-            citiesTableView.reloadData()
-            return
-        }
-
-        filteredCities = cities.citiesArray.filter({ (word) -> Bool in
-            guard searchBar.text != nil else {return false}
-            return word.lowercased().contains(searchText.lowercased())
-        })
-        citiesTableView.reloadData()
-    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is WeatherViewController {

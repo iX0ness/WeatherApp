@@ -30,11 +30,7 @@ class Networking {
         }.resume()
     }
 
-    func description() {
-        for w in weather {
-            print("\(w.current.condition) \(w.location.name)")
-        }
-    }
+    
 
     
 

@@ -10,14 +10,13 @@ import Foundation
 
 class City {
     var name: String
-    var country: String
+    
 
     init(name: String, country: String) {
         self.name = name
-        self.country = country
     }
 
     func description() -> String {
-        return "\(self.name) \(self.country)"
+        return "\(self.name)"
     }
 }

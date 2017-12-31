@@ -47,7 +47,6 @@ class CurrentCityWeatherViewController: UIViewController, UISearchBarDelegate {
                             self.condition = condition["text"] as! String
                             let icon = condition["icon"] as! String
                             self.imageURL = "http:\(icon)"
-
                         }
                     }
 
@@ -98,24 +97,3 @@ extension UIImageView {
         task.resume()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

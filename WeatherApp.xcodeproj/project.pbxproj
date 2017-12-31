@@ -19,7 +19,6 @@
 		32DCEF2F1FE4218400C948DA /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCEF2E1FE4218400C948DA /* WeatherAppUITests.swift */; };
 		32DCEF3D1FE4240D00C948DA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCEF3C1FE4240D00C948DA /* SearchViewController.swift */; };
 		32DCEF3F1FE447DB00C948DA /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCEF3E1FE447DB00C948DA /* Networking.swift */; };
-		32DCEF411FE4513C00C948DA /* Cities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DCEF401FE4513C00C948DA /* Cities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +57,6 @@
 		32DCEF301FE4218400C948DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32DCEF3C1FE4240D00C948DA /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		32DCEF3E1FE447DB00C948DA /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
-		32DCEF401FE4513C00C948DA /* Cities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +87,6 @@
 		325B8B541FE6F9D800C037D7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				32DCEF401FE4513C00C948DA /* Cities.swift */,
 				325B8B581FE6FA3800C037D7 /* City.swift */,
 				32B64F001FE8147A00FEBBC2 /* Weather.swift */,
 			);
@@ -302,7 +299,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				32B64F011FE8147A00FEBBC2 /* Weather.swift in Sources */,
-				32DCEF411FE4513C00C948DA /* Cities.swift in Sources */,
 				3253A2D11FE71B47007A8A68 /* WeatherViewController.swift in Sources */,
 				325B8B591FE6FA3800C037D7 /* City.swift in Sources */,
 				3253A30D1FE735EF007A8A68 /* CurrentCityWeatherViewController.swift in Sources */,
