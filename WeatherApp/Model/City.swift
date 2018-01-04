@@ -12,7 +12,7 @@ class City {
     var name: String
     
 
-    init(name: String, country: String) {
+    init(name: String) {
         self.name = name
     }
 
