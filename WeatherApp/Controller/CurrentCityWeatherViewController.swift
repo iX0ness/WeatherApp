@@ -80,8 +80,8 @@ class CurrentCityWeatherViewController: UIViewController, UISearchBarDelegate {
                             self.feelsLike = Int(feelsLike)
                         }
 
-                        if let visibility = current["vis_km"] as? Int {
-                            self.visibility = visibility
+                        if let visibility = current["vis_km"] as? Double {
+                            self.visibility = Int(visibility)
                         }
 
                         if let condition = current["condition"] as? [String: AnyObject] {

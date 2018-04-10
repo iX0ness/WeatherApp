@@ -175,6 +175,7 @@
                         <outlet property="searchBar" destination="ciw-gj-k9v" id="Shz-kQ-0I9"/>
                         <outlet property="temperatureLabel" destination="XQL-Mf-gTX" id="imE-l4-sVa"/>
                         <outlet property="visibilityLabel" destination="aUo-GH-lqc" id="nev-Lg-Xmv"/>
+                        <outlet property="visibilityValueLabel" destination="nm4-rH-DfM" id="YR9-rQ-vPY"/>
                         <outlet property="weatherImageView" destination="96d-NI-FKr" id="6La-SY-NAf"/>
                         <outlet property="windSpeedLabel" destination="zx1-JP-kMb" id="0vj-ww-i5u"/>
                         <outlet property="windSpeedValueLabel" destination="F9q-a0-cnK" id="BJM-Ia-lYy"/>
@@ -407,7 +408,7 @@
                         <outlet property="pressureValueLabel" destination="vCm-RX-LHa" id="nY0-4c-Arh"/>
                         <outlet property="temperatureLabel" destination="VCY-Y0-a6Q" id="PVh-gC-UGN"/>
                         <outlet property="visibilityLabel" destination="MoY-G4-msX" id="ZfF-Js-1Ks"/>
-                        <outlet property="visibilityValueLabel" destination="5JK-KI-4by" id="kg0-qu-2RE"/>
+                        <outlet property="visibilityValueLabel" destination="5JK-KI-4by" id="rhe-xR-8Ba"/>
                         <outlet property="weatherImageView" destination="guk-04-hNC" id="kNS-9v-qoS"/>
                         <outlet property="windSpeedLabel" destination="7Ib-bh-arw" id="mXc-bH-GhL"/>
                         <outlet property="windSpeedValueLabel" destination="q3h-pz-Qmy" id="Ai8-xf-CQJ"/>
